@@ -13,6 +13,7 @@ function SideBar({
   maxPrice,
   filterPrices,
   setCategory,
+  category,
 }) {
   return (
     <>
@@ -102,6 +103,7 @@ function SideBar({
             minPrice={minPrice}
             maxPrice={maxPrice}
             filterPrices={filterPrices}
+            category={category}
           />
         </Stack>
       </Stack>

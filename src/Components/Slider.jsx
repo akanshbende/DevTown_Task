@@ -1,7 +1,7 @@
 // import React from 'react'
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
-function DiscreteSlider({ minPrice, maxPrice, filterPrices }) {
+function DiscreteSlider({ minPrice, maxPrice, filterPrices, category }) {
   // console.log(minPrice);
   // console.log(maxPrice);
   return (
@@ -15,7 +15,7 @@ function DiscreteSlider({ minPrice, maxPrice, filterPrices }) {
           marks
           min={minPrice}
           max={maxPrice}
-          onChange={(e) => filterPrices(e.target.value)} //set changed slider value
+          onChange={(e) => filterPrices(e.target.value, category)} //set changed slider value
         />
       </Box>
     </>

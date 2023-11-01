@@ -74,22 +74,24 @@ function App() {
     setFilteredItems(newItems);
     setCurrentPage(1);
   };
-
-  const filterPrices = (price) => {
+  // console.log(category);
+  const filterPrices = (price, category) => {
     console.log(price);
     const newPriceItems = originalItems.filter((itemPrice) => {
-      return price >= itemPrice?.price;
-      // {
-      //   console.log(itemPrice.price);
-      // }
+      return itemPrice?.price <= price;
     });
 
-    const filteredPrices = newPriceItems.filter(
-      (newval) => newval.category === category
-    );
     // console.log(newPriceItems);
     // console.log(category);
-    setFilteredItems(filteredPrices);
+    if (category) {
+      var filteredPrices = newPriceItems.filter(
+        (newval) => newval.category === category
+      );
+      setFilteredItems(filteredPrices);
+    } else {
+      setFilteredItems(newPriceItems);
+    }
+
     // console.log(filteredPrices);
   };
   // console.log("item : ", item);
@@ -114,6 +116,7 @@ function App() {
             maxPrice={maxPrice}
             filterPrices={filterPrices}
             setCategory={setCategory}
+            category={category}
           />
         </Stack>
         <FilterDrawer
@@ -125,10 +128,15 @@ function App() {
           maxPrice={maxPrice}
           filterPrices={filterPrices}
           setCategory={setCategory}
+          category={category}
         />
         <Stack
           direction={{ md: "column" }}
-          sx={{ alignItems: "center", borderLeft: { md: "2px solid black" } }}
+          sx={{
+            alignItems: "center",
+            borderLeft: { md: "2px solid black" },
+            width: "100%",
+          }}
         >
           <Box
             // direction={{ md: "row" }}

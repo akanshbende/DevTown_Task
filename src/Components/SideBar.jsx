@@ -1,5 +1,6 @@
 import { Stack, Typography } from "@mui/material";
 import Button from "./Button";
+import DiscreteSlider from "./Slider";
 // import React from "react";
 
 function SideBar({
@@ -7,6 +8,10 @@ function SideBar({
   filterCategory,
   setFilteredItems,
   item,
+  minPrice,
+  maxPrice,
+  filterPrices,
+  setCategory,
 }) {
   return (
     <>
@@ -38,7 +43,11 @@ function SideBar({
                 <button
                   key={index}
                   className="buttonAll bg-black text-white font-bold text-sm rounded-lg p-2 m-1   align-middle text-center"
-                  onClick={() => filterCategory(items)}
+                  onClick={() => {
+                    filterCategory(items);
+
+                    setCategory(items);
+                  }}
                 >
                   {items}
                 </button>
@@ -49,9 +58,6 @@ function SideBar({
             className="buttonAll bg-black text-white font-bold text-sm rounded-lg p-2 m-1   align-middle text-center"
             onClick={() => {
               setFilteredItems(item);
-              {
-                console.log("Allll");
-              }
             }}
           >
             All
@@ -62,7 +68,13 @@ function SideBar({
         <Typography variant="h5" component={"div"}>
           <strong>Price</strong>
         </Typography>
-        <Stack direction={{ md: "column" }}></Stack>
+        <Stack direction={{ md: "column" }}>
+          <DiscreteSlider
+            minPrice={minPrice}
+            maxPrice={maxPrice}
+            filterPrices={filterPrices}
+          />
+        </Stack>
       </Stack>
     </>
   );

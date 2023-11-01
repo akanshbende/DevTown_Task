@@ -41,7 +41,7 @@ function ProductCard({ img, title, desc, price }) {
               lineBreak: "loose",
               lineClamp: 2,
 
-              // whiteSpace: "nowrap",
+              whiteSpace: "nowrap",
               overflow: "hidden",
               // textOverflow: "",
               // width: "180px",

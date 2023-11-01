@@ -1,18 +1,23 @@
 import { Box, Stack, Typography } from "@mui/material";
 import "./App.css";
-import SideBar from "./Components/SideBar";
+// import SideBar from "./Components";
 import { useEffect, useState } from "react";
 import ProductCard from "./Components/ProductCard";
-import PaginationSquared from "./Pagination";
+import PaginationSquared from "./Components/Pagination";
+import SideBar from "./Components/SideBar";
 
 // import { Typography } from "antd";
 
 function App() {
   const [item, setItem] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
-
+  const [originalItems, setOriginalItems] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const recordsPerPage = 6;
+  const [category, setCategory] = useState();
+
+  // console.log(category);
+
+  const recordsPerPage = 8;
   const lastIndex = currentPage * recordsPerPage;
   const firstIndex = (currentPage - 1) * recordsPerPage;
 
@@ -20,6 +25,7 @@ function App() {
   const handlePageChange = (event, value) => {
     setCurrentPage(value);
   };
+
   const getData = async () => {
     try {
       const response = await fetch("https://dummyjson.com/products");
@@ -27,6 +33,7 @@ function App() {
       // console.log(data);
       setItem(data.products);
       setFilteredItems(data.products);
+      setOriginalItems(data.products);
     } catch (error) {
       console.error("An error occurred:", error);
     }
@@ -36,20 +43,57 @@ function App() {
   }, []);
 
   const productCategories = [...new Set(item?.map((val) => val.category))];
-  console.log(productCategories);
+  // console.log(productCategories);
+
+  const ProductPrice = item.map((price) => {
+    const numericPrice = parseFloat(price.price);
+
+    if (!isNaN(numericPrice)) {
+      return numericPrice;
+    }
+    return 0;
+  });
+  if (ProductPrice.length > 0) {
+    var maxPrice = Math.max(...ProductPrice);
+    var minPrice = Math.min(...ProductPrice);
+    // console.log("Max Price:", maxPrice);
+    // console.log("Min Price:", minPrice);
+  } else {
+    console.log("No valid numeric prices found in the array.");
+  }
 
   const filterCategory = (cat) => {
-    {
-      console.log("catttt :", cat);
-    }
-    const newItems = item?.filter((newval) => newval.category === cat);
-    console.log("newItems :", newItems);
+    const newItems = item?.filter((newval) => {
+      return (
+        newval.category === cat // Filter by category
+      );
+    });
+
     setFilteredItems(newItems);
     setCurrentPage(1);
   };
-  console.log("item : ", item);
-  console.log("filterItems : ", filteredItems);
 
+  const filterPrices = (price) => {
+    console.log(price);
+    const newPriceItems = originalItems.filter((itemPrice) => {
+      return price >= itemPrice?.price;
+      // console.log(itemPrice.price);
+    });
+
+    const filteredPrices = newPriceItems.filter(
+      (newval) => newval.category === category
+    );
+    // console.log(newPriceItems);
+    // console.log(category);
+    setFilteredItems(filteredPrices);
+    // console.log(filteredPrices);
+  };
+  // console.log("item : ", item);
+  // console.log("filterItems : ", filteredItems);
+
+  // const handlePriceRangeChange = (newValue) => {
+  //   setSelectedPriceRange(newValue); // Update the selectedPriceRange state
+  // };
   return (
     <>
       <Stack direction={{ md: "row" }}>
@@ -58,6 +102,10 @@ function App() {
           filterCategory={filterCategory}
           setFilteredItems={setFilteredItems}
           item={item}
+          minPrice={minPrice}
+          maxPrice={maxPrice}
+          filterPrices={filterPrices}
+          setCategory={setCategory}
         />
         <Stack direction={{ md: "column" }} sx={{ alignItems: "center" }}>
           <Box

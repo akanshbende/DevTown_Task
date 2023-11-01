@@ -6,7 +6,6 @@ Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-# College Placement Management System 
 
 ### Table of Contents
 
@@ -32,8 +31,8 @@ Before you get started with Vite.js, ensure you have the following prerequisites
 1. Clone your GitHub repository to your local machine/PC if you haven't already:
 
 ```shell
-   git clone https://github.com/akanshbende/CPMS_FinalYear.git
-   cd CPMS_FinalYear
+   git clone https://github.com/akanshbende/DevTown_Task.git
+   cd DevTown_Task
 ```
 
 2. Install all node modules of remote project in your PC (if you haven't already):

@@ -1,6 +1,7 @@
 import { Stack, Typography } from "@mui/material";
 import Button from "./Button";
 import DiscreteSlider from "./Slider";
+import React from "react";
 // import React from "react";
 
 function SideBar({
@@ -15,7 +16,14 @@ function SideBar({
 }) {
   return (
     <>
-      <Stack sx={{ width: { md: "23%" }, padding: { md: "4rem 1rem" } }}>
+      <Stack
+        sx={
+          {
+            // width: { md: "23%" },
+            // padding: { md: "4rem 1rem" },
+          }
+        }
+      >
         <Typography
           variant="h3"
           component={"div"}
@@ -23,7 +31,7 @@ function SideBar({
         >
           <strong> Filters</strong>
         </Typography>
-
+        {/* {console.log(productCategories)} */}
         <Typography variant="h5" component={"div"}>
           <strong>Categories</strong>
         </Typography>
@@ -33,8 +41,30 @@ function SideBar({
           direction={{ md: "row" }}
           sx={{ flexWrap: "wrap", marginBottom: { md: 4 } }}
         >
-          {productCategories &&
-            productCategories?.map((items, index) => {
+          {/* {console.log(productCategories)} */}
+          {Array.isArray(productCategories) ? (
+            productCategories.map((items, index) => {
+              return (
+                <button
+                  key={index}
+                  className="buttonAll bg-black text-white font-bold text-sm rounded-lg p-2 m-1   align-middle text-center"
+                  onClick={() => {
+                    filterCategory(items);
+                    setCategory(items);
+                  }}
+                >
+                  {/* {console.log(items)} */}
+                  {items}
+                </button>
+              );
+            })
+          ) : (
+            <Typography variant="h6" component={"div"}>
+              <strong>No data available of Categories</strong>
+            </Typography>
+          )}
+          {/* {productCategories &&
+            productCategories.map((items, index) => {
               {
                 // console.log(typeof items);
                 // console.log(productCategories);
@@ -45,14 +75,13 @@ function SideBar({
                   className="buttonAll bg-black text-white font-bold text-sm rounded-lg p-2 m-1   align-middle text-center"
                   onClick={() => {
                     filterCategory(items);
-
                     setCategory(items);
                   }}
                 >
                   {items}
                 </button>
               );
-            })}
+            })} */}
           {/* <Button title={"All"} setItem={setItem} item={item} /> */}
           <button
             className="buttonAll bg-black text-white font-bold text-sm rounded-lg p-2 m-1   align-middle text-center"

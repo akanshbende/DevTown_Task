@@ -6,7 +6,7 @@ function DiscreteSlider({ minPrice, maxPrice, filterPrices }) {
   // console.log(maxPrice);
   return (
     <>
-      <Box sx={{ width: 300 }}>
+      <Box sx={{ width: "100%" }}>
         <Slider
           aria-label="Temperature"
           defaultValue={500}

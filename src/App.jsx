@@ -138,48 +138,67 @@ function App() {
             width: "100%",
           }}
         >
-          <Box
-            // direction={{ md: "row" }}
-
-            sx={{
-              display: "flex",
-              width: { md: "80%" },
-              // backgroundColor: "#16171d",
-              padding: { md: "2rem", sm: "1rem", xs: "1rem" },
-              flexWrap: "wrap",
-              alignItems: "center",
-              textAlign: "center",
-              justifyContent: { sm: "center", xs: "center", md: "normal" },
-              gap: 4,
-              height: { md: "90vh", sm: "95%", xs: "95%" },
-              overflow: "hidden",
-              margin: { md: "0rem", sm: "1rem" },
-            }}
-          >
-            {Array.isArray(paginatedItems) ? (
-              paginatedItems?.map((product, index) => {
-                return (
-                  <ProductCard
-                    key={index}
-                    img={product?.images[0]}
-                    title={product?.title}
-                    desc={product?.description}
-                    price={product?.price}
-                  />
-                );
-              })
-            ) : (
-              <Typography variant="h5" component={"div"}>
-                <strong>No data available</strong>
+          {item.length == 0 ? (
+            <Stack
+              spacing={3}
+              direction="column"
+              sx={{
+                alignItems: "center",
+                justifyContent: "center",
+                height: "100vh",
+              }}
+            >
+              <img src="https://i.gifer.com/ZKZg.gif" width={300} alt="" />
+              <Typography variant="h4" component={"div"}>
+                Loading...
               </Typography>
-            )}
-          </Box>
-          <PaginationSquared
-            handlePageChange={handlePageChange}
-            filteredItems={filteredItems}
-            recordsPerPage={recordsPerPage}
-            currentPage={currentPage}
-          />
+            </Stack>
+          ) : (
+            <>
+              <Box
+                // direction={{ md: "row" }}
+
+                sx={{
+                  display: "flex",
+                  width: { md: "80%" },
+                  // backgroundColor: "#16171d",
+                  padding: { md: "2rem", sm: "1rem", xs: "1rem" },
+                  flexWrap: "wrap",
+                  alignItems: "center",
+                  textAlign: "center",
+                  justifyContent: { sm: "center", xs: "center", md: "normal" },
+                  gap: 4,
+                  height: { md: "90vh", sm: "95%", xs: "95%" },
+                  overflow: "hidden",
+                  margin: { md: "0rem", sm: "1rem" },
+                }}
+              >
+                {Array.isArray(paginatedItems) ? (
+                  paginatedItems?.map((product, index) => {
+                    return (
+                      <ProductCard
+                        key={index}
+                        img={product?.images[0]}
+                        title={product?.title}
+                        desc={product?.description}
+                        price={product?.price}
+                      />
+                    );
+                  })
+                ) : (
+                  <Typography variant="h5" component={"div"}>
+                    <strong>No data available</strong>
+                  </Typography>
+                )}
+              </Box>
+              <PaginationSquared
+                handlePageChange={handlePageChange}
+                filteredItems={filteredItems}
+                recordsPerPage={recordsPerPage}
+                currentPage={currentPage}
+              />
+            </>
+          )}
         </Stack>
       </Stack>
     </>

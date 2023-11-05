@@ -52,5 +52,8 @@ npm run dev
 ```shell
 npm run build
 
+```
+![image](https://github.com/akanshbende/Product_Filter/assets/76099756/bf56792b-7a9c-4990-8fb5-885cf6460bdb)
+
 
 

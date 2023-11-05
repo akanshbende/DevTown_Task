@@ -12,6 +12,7 @@ function DiscreteSlider({ minPrice, maxPrice, filterPrices, category }) {
           <strong>Min</strong>
         </h3>
         <Slider
+          sx={{ color: "black" }}
           valueLabelDisplay="on"
           aria-label="Temperature"
           defaultValue={500}

@@ -16,6 +16,7 @@ function ProductCard({ img, title, desc, price }) {
           marginBottom: 0.3,
           padding: ".5rem",
           boxShadow: "5px 8px 0px #000000",
+          background: "white",
         }}
       >
         <img

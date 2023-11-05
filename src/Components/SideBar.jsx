@@ -2,6 +2,7 @@ import { Stack, Typography } from "@mui/material";
 import Button from "./Button";
 import DiscreteSlider from "./Slider";
 import React from "react";
+import DualSlider from "./DualSlider";
 // import React from "react";
 
 function SideBar({
@@ -14,16 +15,21 @@ function SideBar({
   filterPrices,
   setCategory,
   category,
+  minSelectedPrice,
+  maxSelectedPrice,
+  value,
+  handleChange,
 }) {
   return (
     <>
       <Stack
-        sx={
-          {
-            // width: { md: "23%" },
-            // padding: { md: "4rem 1rem" },
-          }
-        }
+        sx={{
+          // width: { md: "23%" },
+          padding: { md: "1rem .5rem" },
+          height: "90vh",
+          backgroundColor: "#DFCCFB",
+          borderRadius: "10px",
+        }}
       >
         <Typography
           variant="h3"
@@ -108,6 +114,17 @@ function SideBar({
             filterPrices={filterPrices}
             category={category}
           />
+
+          {/* <DualSlider
+            minPrice={minPrice}
+            maxPrice={maxPrice}
+            minSelectedPrice={minSelectedPrice}
+            maxSelectedPrice={maxSelectedPrice}
+            filterPrices={filterPrices}
+            category={category}
+            value={value}
+            handleChange={handleChange}
+          /> */}
         </Stack>
       </Stack>
     </>

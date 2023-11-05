@@ -15,7 +15,7 @@ function App() {
   const [originalItems, setOriginalItems] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [category, setCategory] = useState();
-
+  const [value, setValue] = useState([5, 10]);
   // console.log(category);
 
   const recordsPerPage = 6;
@@ -94,6 +94,32 @@ function App() {
 
     // console.log(filteredPrices);
   };
+
+  const minDistance = 10;
+  const handleChange = (event, newValue, activeThumb, category) => {
+    if (!Array.isArray(newValue)) {
+      return;
+    }
+    if (activeThumb === 0) {
+      setValue([Math.min(newValue[0], value[1] - minDistance), value[1]]);
+    } else {
+      setValue([value[0], Math.max(newValue[1], value[0] + minDistance)]);
+    }
+    const newPriceItems = originalItems.filter((itemPrice) => {
+      return itemPrice?.price >= newValue[0] && itemPrice?.price <= newValue[1];
+    });
+
+    // console.log(newPriceItems);
+    // console.log(category);
+    if (category) {
+      var filteredPrices = newPriceItems.filter(
+        (newval) => newval.category === category
+      );
+      setFilteredItems(filteredPrices);
+    } else {
+      setFilteredItems(newPriceItems);
+    }
+  };
   // console.log("item : ", item);
   // console.log("filterItems : ", filteredItems);
   // display: { md: "block", sm: "none", xs: "none" },
@@ -103,8 +129,10 @@ function App() {
         <Stack
           sx={{
             width: { md: "23%" },
-            padding: { md: "4rem 1rem" },
+            padding: { md: "1rem 1rem" },
             display: { md: "block", sm: "none", xs: "none" },
+            backgroundColor: "#BEADFA",
+            height: "100vh",
           }}
         >
           <SideBar
@@ -117,6 +145,8 @@ function App() {
             filterPrices={filterPrices}
             setCategory={setCategory}
             category={category}
+            handleChange={handleChange}
+            value={value}
           />
         </Stack>
         <FilterDrawer
@@ -134,8 +164,9 @@ function App() {
           direction={{ md: "column" }}
           sx={{
             alignItems: "center",
-            borderLeft: { md: "2px solid black" },
+            borderLeft: { md: "2px solid #505369" },
             width: "100%",
+            backgroundColor: "#FFF8C9",
           }}
         >
           {item.length == 0 ? (

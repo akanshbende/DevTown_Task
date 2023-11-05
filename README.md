@@ -53,7 +53,9 @@ npm run dev
 npm run build
 
 ```
-![image](https://github.com/akanshbende/Product_Filter/assets/76099756/bf56792b-7a9c-4990-8fb5-885cf6460bdb)
+###Preview
+![image](https://github.com/akanshbende/Product_Filter/assets/76099756/31082da0-6ab4-4247-a5d8-478249622a2b)
+
 
 
 

@@ -8,12 +8,12 @@ function DiscreteSlider({ minPrice, maxPrice, filterPrices, category }) {
     <>
       <Box sx={{ width: "100%" }}>
         <Slider
+          valueLabelDisplay="on"
           aria-label="Temperature"
           defaultValue={500}
-          valueLabelDisplay="auto"
-          step={50}
+          step={150}
           marks
-          min={minPrice}
+          min={0}
           max={maxPrice}
           onChange={(e) => filterPrices(e.target.value, category)} //set changed slider value
         />

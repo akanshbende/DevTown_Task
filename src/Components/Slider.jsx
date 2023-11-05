@@ -1,4 +1,5 @@
 // import React from 'react'
+import { Stack } from "@mui/material";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 function DiscreteSlider({ minPrice, maxPrice, filterPrices, category }) {
@@ -6,7 +7,10 @@ function DiscreteSlider({ minPrice, maxPrice, filterPrices, category }) {
   // console.log(maxPrice);
   return (
     <>
-      <Box sx={{ width: "100%" }}>
+      <Stack spacing={1} direction={"row"} pt={2} sx={{ width: "100%" }}>
+        <h3>
+          <strong>Min</strong>
+        </h3>
         <Slider
           valueLabelDisplay="on"
           aria-label="Temperature"
@@ -17,7 +21,10 @@ function DiscreteSlider({ minPrice, maxPrice, filterPrices, category }) {
           max={maxPrice}
           onChange={(e) => filterPrices(e.target.value, category)} //set changed slider value
         />
-      </Box>
+        <h3>
+          <strong>Max</strong>
+        </h3>
+      </Stack>
     </>
   );
 }

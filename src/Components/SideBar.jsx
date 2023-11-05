@@ -40,6 +40,7 @@ function SideBar({
         {/* Categories  */}
         <Stack
           direction={{ md: "row" }}
+          pt={2}
           sx={{ flexWrap: "wrap", marginBottom: { md: 4 } }}
         >
           {/* {console.log(productCategories)} */}

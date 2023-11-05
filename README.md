@@ -53,7 +53,7 @@ npm run dev
 npm run build
 
 ```
-###Preview
+### Preview
 ![image](https://github.com/akanshbende/Product_Filter/assets/76099756/31082da0-6ab4-4247-a5d8-478249622a2b)
 
 
